@@ -32,3 +32,12 @@ These patterns enable AWS Amplify to automatically create branch previews for pu
 
 This repo is deployed as a static app with AWS Amplify.
 
+### Amplify Setup
+
+1. Connect Amplify to GitHub repo: `<username>/homeops`
+2. Build settings:
+   - Build command: `npm run build`
+   - Output directory: `dist`
+   - Amplify will use `amplify.yml` if present
+3. Branch previews enabled for: `feature/*`, `bugfix/*`, `chore/*`
+
