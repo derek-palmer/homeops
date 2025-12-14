@@ -19,6 +19,15 @@ npm run dev
 - npm run test
 - npm run build
 
+## Contributing
+
+Branch naming patterns:
+- `feature/*` - New features
+- `bugfix/*` - Bug fixes
+- `chore/*` - Maintenance tasks
+
+These patterns enable AWS Amplify to automatically create branch previews for pull requests.
+
 ## Deploy
 
 This repo is deployed as a static app with AWS Amplify.
