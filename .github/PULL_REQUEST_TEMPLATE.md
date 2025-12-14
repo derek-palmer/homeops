@@ -7,12 +7,8 @@ What is changing and why?
 - [ ] Chore
 
 ## Testing
-How was this tested? Include commands or steps.
-
-- [ ] `npm run lint` passes
-- [ ] `npm run typecheck` passes
-- [ ] `npm run test` passes
-- [ ] `npm run build` succeeds
+- Confirm all checks are passing
+- Provide any additonal testing needed below:
 
 ## Notes
 Anything reviewers should focus on or be aware of? (risk, rollout, follow‑ups)
