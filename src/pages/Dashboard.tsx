@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, type FormEvent } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { EntriesLineChart } from '../components/charts/EntriesLineChart'
+import { MetaTags } from '../components/MetaTags'
 import { getCurrentSession, onAuthStateChange, signInWithPassword, signOut } from '../lib/auth'
 import { listEntries } from '../services/entries'
 import { HomeOpsEntry } from '../types/entry'
@@ -123,9 +124,19 @@ export default function Dashboard() {
     }
   }
 
+  // Determine meta tags based on authentication state
+  const metaTitle = session
+    ? 'HomeOps Dashboard - Track Your Home Improvements'
+    : 'Sign in to HomeOps - Track Home Improvements'
+  const metaDescription = session
+    ? 'View and manage your home improvements, fixes, repairs, and todos. Track spending trends and stay organized.'
+    : 'Sign in to HomeOps to track your home improvements, fixes, repairs, and todos in one place.'
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <>
+      <MetaTags title={metaTitle} description={metaDescription} />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8 flex items-start justify-between gap-4">
           <div>
@@ -287,7 +298,7 @@ export default function Dashboard() {
                 </div>
                 <h2 className="text-2xl font-semibold text-slate-900">Sign in to HomeOps</h2>
                 <p className="mt-2 text-sm text-slate-600">
-                  Enter your credentials to access your home improvement dashboard
+                  Enter your credentials to access your home improvement management system
                 </p>
               </div>
 
@@ -431,6 +442,7 @@ export default function Dashboard() {
         )}
       </div>
     </div>
+    </>
   )
 }
 

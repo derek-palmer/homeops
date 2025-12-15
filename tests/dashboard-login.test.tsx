@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { HelmetProvider } from 'react-helmet-async'
 import Dashboard from '../src/pages/Dashboard'
 import * as auth from '../src/lib/auth'
 import type { Session } from '@supabase/supabase-js'
@@ -52,7 +53,11 @@ describe('Dashboard Login', () => {
 
   describe('Login Form Rendering', () => {
     it('renders login form when user is not authenticated', async () => {
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByText('Sign in to HomeOps')).toBeInTheDocument()
@@ -63,7 +68,11 @@ describe('Dashboard Login', () => {
     })
 
     it('renders login form with correct placeholders', async () => {
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
@@ -72,7 +81,11 @@ describe('Dashboard Login', () => {
     })
 
     it('does not show error message initially', async () => {
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.queryByText(/error/i)).not.toBeInTheDocument()
@@ -83,7 +96,11 @@ describe('Dashboard Login', () => {
   describe('Form Input Handling', () => {
     it('updates email field when user types', async () => {
       const user = userEvent.setup()
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -97,7 +114,11 @@ describe('Dashboard Login', () => {
 
     it('updates password field when user types', async () => {
       const user = userEvent.setup()
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Password')).toBeInTheDocument()
@@ -115,7 +136,11 @@ describe('Dashboard Login', () => {
       const user = userEvent.setup()
       vi.mocked(auth.signInWithPassword).mockResolvedValue(mockSession)
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -138,7 +163,11 @@ describe('Dashboard Login', () => {
       const user = userEvent.setup()
       vi.mocked(auth.signInWithPassword).mockResolvedValue(mockSession)
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -174,7 +203,11 @@ describe('Dashboard Login', () => {
       })
       vi.mocked(auth.signInWithPassword).mockReturnValue(signInPromise)
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -210,7 +243,11 @@ describe('Dashboard Login', () => {
       const errorMessage = 'Invalid login credentials'
       vi.mocked(auth.signInWithPassword).mockRejectedValue(new Error(errorMessage))
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -233,7 +270,11 @@ describe('Dashboard Login', () => {
       const user = userEvent.setup()
       vi.mocked(auth.signInWithPassword).mockRejectedValue('String error')
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -258,7 +299,11 @@ describe('Dashboard Login', () => {
         .mockRejectedValueOnce(new Error('First error'))
         .mockResolvedValueOnce(mockSession)
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Email')).toBeInTheDocument()
@@ -292,7 +337,11 @@ describe('Dashboard Login', () => {
 
   describe('Form Validation', () => {
     it('requires email field to be filled', async () => {
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         const emailInput = screen.getByLabelText('Email')
@@ -301,7 +350,11 @@ describe('Dashboard Login', () => {
     })
 
     it('requires password field to be filled', async () => {
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         const passwordInput = screen.getByLabelText('Password')
@@ -311,7 +364,11 @@ describe('Dashboard Login', () => {
 
     it('prevents form submission when email is empty', async () => {
       const user = userEvent.setup()
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       await waitFor(() => {
         expect(screen.getByLabelText('Password')).toBeInTheDocument()
@@ -334,7 +391,11 @@ describe('Dashboard Login', () => {
       vi.mocked(auth.getCurrentSession).mockResolvedValue(mockSession)
       vi.mocked(auth.signOut).mockResolvedValue()
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       // Wait for session to load and dashboard to render
       await waitFor(() => {
@@ -364,7 +425,11 @@ describe('Dashboard Login', () => {
       vi.mocked(auth.getCurrentSession).mockResolvedValue(mockSession)
       vi.mocked(auth.signOut).mockResolvedValue()
 
-      render(<Dashboard />)
+      render(
+        <HelmetProvider>
+          <Dashboard />
+        </HelmetProvider>,
+      )
 
       // Wait for session to load
       await waitFor(() => {
