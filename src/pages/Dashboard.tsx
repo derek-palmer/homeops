@@ -366,11 +366,6 @@ export default function Dashboard() {
                     <p className="text-sm font-medium text-red-800">{authError}</p>
                   </div>
                 )}
-                {!authError && (
-                  <p className="text-xs text-center text-slate-500">
-                    Use the Supabase user you created in Auth.
-                  </p>
-                )}
               </form>
             </div>
           </div>
