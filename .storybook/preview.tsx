@@ -1,4 +1,7 @@
 import type { Preview } from '@storybook/react-vite'
+import React from 'react'
+import { HelmetProvider } from 'react-helmet-async'
+import '../src/index.css'
 
 const preview: Preview = {
   parameters: {
@@ -16,6 +19,13 @@ const preview: Preview = {
       test: 'todo',
     },
   },
+  decorators: [
+    (Story) => (
+      <HelmetProvider>
+        <Story />
+      </HelmetProvider>
+    ),
+  ],
 }
 
 export default preview
