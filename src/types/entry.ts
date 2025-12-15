@@ -9,3 +9,10 @@ export type HomeOpsEntry = {
   notes?: string
 }
 
+export type NewEntryInput = {
+  type: EntryType
+  title: string
+  value?: number
+  notes?: string
+}
+
