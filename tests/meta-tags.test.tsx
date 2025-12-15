@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { render, waitFor } from '@testing-library/react'
 import { HelmetProvider } from 'react-helmet-async'
 import { MetaTags } from '../src/components/MetaTags'
@@ -8,7 +8,7 @@ describe('MetaTags Component', () => {
 
   beforeEach(() => {
     // Set up window.location mock
-    delete (window as any).location
+    delete (window as Partial<Window>).location
     window.location = {
       href: 'https://example.com',
       origin: 'https://example.com',
@@ -241,7 +241,7 @@ describe('MetaTags Component', () => {
     it('handles missing window.location gracefully', async () => {
       // Temporarily remove window.location
       const savedLocation = window.location
-      delete (window as any).location
+      delete (window as Partial<Window>).location
 
       renderWithHelmet(<MetaTags title="Test" description="Test description" />)
       
