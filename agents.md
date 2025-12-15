@@ -22,3 +22,19 @@
 - Build configuration is in `amplify.yml`
 - Static files are served from the `dist` directory after build
 
+## App Overview
+- Vite + React + TypeScript frontend with Tailwind v4 (minimal config kept for compatibility) and Tremor for charts
+- Single-page flow rendered in `src/App.tsx` -> `src/pages/Dashboard.tsx`
+- Supabase client in `src/lib/supabase.ts` with graceful fallback to mock data when env vars are absent
+- Auth helpers in `src/lib/auth.ts`; dashboard uses Supabase email/password auth and listens for auth state changes
+- Entries service (`src/services/entries.ts`) returns mock data when Supabase env vars are missing; creation requires Supabase env
+- Chart component in `src/components/charts/EntriesLineChart.tsx` renders spending trend from entries
+- SEO/meta handled via `src/components/MetaTags.tsx` and `react-helmet-async`
+
+## Testing & Tooling
+- Primary scripts: `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`
+- Vitest + Testing Library setup in `vite.config.ts` with `src/test/setup.ts` registering jest-dom
+- Mock-friendly patterns: entries service and auth are mocked in tests (`tests/dashboard-login.test.tsx` et al.)
+
+## Branch Workflow
+- Follow branch prefixes: `feature/*`, `bugfix/*`, `chore/*` (current work on `chore/update-agents-guidance`)
