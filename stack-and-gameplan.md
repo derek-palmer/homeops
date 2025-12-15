@@ -34,7 +34,7 @@ Quality and security
 ### Phase 0. GitHub setup first
 
 1) Create the repo
-- Create a new GitHub repo named: homeops
+- Create a new GitHub repo named: HomeOps (or homeops - GitHub is case-insensitive)
 - Add a short description: Track home improvements, fixes, repairs, and todos in one place
 - Do not add starter files, no README, no .gitignore
 
@@ -44,7 +44,7 @@ git init
 git add .
 git commit -m "initial HomeOps scaffold"
 git branch -M main
-git remote add origin git@github.com:YOUR_ORG_OR_USER/homeops.git
+git remote add origin git@github.com:YOUR_ORG_OR_USER/HomeOps.git
 git push -u origin main
 ```
 
@@ -99,7 +99,7 @@ Goal: Deploy static HomeOps frontend from GitHub, with branch builds and PR prev
 1) Connect Amplify to GitHub
 - AWS Console -> Amplify -> Host web app
 - Connect GitHub
-- Select repo: homeops
+- Select repo: HomeOps (or homeops - GitHub is case-insensitive)
 - Select branch: main
 - Build settings
   - Build command: npm run build

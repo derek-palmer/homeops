@@ -3,6 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Only build main branch or branches matching feature/*, bugfix/*, chore/*
+        - |
+          if [[ "$AWS_BRANCH" != "main" ]] && [[ ! "$AWS_BRANCH" =~ ^(feature|bugfix|chore)/ ]]; then
+            echo "Branch $AWS_BRANCH does not match allowed patterns (main, feature/*, bugfix/*, chore/*). Skipping build."
+            exit 0
+          fi
         - npm ci
     build:
       commands:
