@@ -7,8 +7,8 @@ Track home improvements, fixes, repairs, and todos in one place.
 1) Create a Vite React TypeScript app.
 
 ```bash
-mkdir homeops
-cd homeops
+mkdir HomeOps
+cd HomeOps
 npm create vite@latest . -- --template react-ts
 npm install
 ```
@@ -55,7 +55,7 @@ Notes:
 Create these folders and files.
 
 ```text
-homeops/
+HomeOps/
   .github/
     workflows/
       ci.yml
